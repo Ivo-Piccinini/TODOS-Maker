@@ -1,9 +1,8 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
+
 const TodoContext = React.createContext();
-
-
 
 function TodoProvider(props) {
     const {
@@ -30,15 +29,7 @@ function TodoProvider(props) {
           return todoText.includes(searchText);
         })
       }
-    
-      const completeTodo = (text) => {
-        const todoIndex = todos.findIndex(todo => todo.text === text);
-        const newTodos = [...todos];
-    
-        newTodos[todoIndex].completed = true;
-        saveTodos(newTodos);
-      };
-
+      
       const addTodo = (text) => {
         const newTodos = [...todos];
     
@@ -48,6 +39,15 @@ function TodoProvider(props) {
         });
         saveTodos(newTodos);
       };
+
+      const completeTodo = (text) => {
+        const todoIndex = todos.findIndex(todo => todo.text === text);
+        const newTodos = [...todos];
+    
+        newTodos[todoIndex].completed = true;
+        saveTodos(newTodos);
+      };
+
     
       const deleteTodo = (text) => {
         const todoIndex = todos.findIndex(todo => todo.text === text);
@@ -67,8 +67,8 @@ function TodoProvider(props) {
             searchValue,
             setSearchValue,
             searchedTodos,
-            completeTodo,
             addTodo,
+            completeTodo,
             deleteTodo,
             openModal,
             setOpenModal,

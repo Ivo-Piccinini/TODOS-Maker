@@ -1,12 +1,15 @@
 import React from "react";
-import { TodoCounter } from "./TodoCounter";
 import { TodoContext } from "../TodoContext";
+import { TodoCounter } from "./TodoCounter";
 import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
 import { TodoItem } from "./TodoItem";
+import { TodosError } from "./TodosError";
+import { TodosLoading } from "./TodosLoading";
+import { EmptyTodos } from "./EmptyTodos";
+import { TodoForm } from "./TodoForm";
 import { CreateTodoButton } from "./CreateTodoButton";
 import { Modal } from "./modal";
-import { TodoForm } from "./TodoForm";
 
 
 
@@ -29,9 +32,9 @@ function AppUi() {
         <TodoSearch />
 
             <TodoList>
-              { error && <p>The page has been crashed</p> }
-              { loading && <p>The page is loading...</p> }
-              { (!loading && !searchedTodos.length) && <p>Make your first todo!</p> }
+              { error && <TodosError /> }
+              { loading && <TodosLoading /> }
+              { (!loading && !searchedTodos.length) && <EmptyTodos /> }
               
               {searchedTodos.map(todo => (
                 <TodoItem 
